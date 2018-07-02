@@ -20,6 +20,25 @@ class BaseViewController : UIViewController, UITextFieldDelegate {
     
     }
     
+    func doLogout() {
+        UdacityAPI.doLogout() {(errorMessage: String?) in
+            
+            if errorMessage == nil || errorMessage == "" {
+                
+                performUIUpdatesOnMain {
+                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: "Login")
+                    self.present(viewController, animated: true, completion: nil)
+                }
+                
+            } else {
+                
+                self.showSimpleAlert(caption: "Error", text: errorMessage!, okHandler: nil)
+                
+            }
+            
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         

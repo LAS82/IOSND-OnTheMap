@@ -25,14 +25,15 @@ class MapViewController : BaseViewController, MKMapViewDelegate {
         setStudentsAnnotationsOnMap()
     }
     
-    @IBAction func addClick(_ sender: Any) {
+    @IBAction func logoutClick(_ sender: Any) {
+        super.doLogout()
     }
     
     func setStudentsAnnotationsOnMap() {
         
-        UdacityAPI.getStudentsLocation(){ (studentsData, success, error) in
+        UdacityAPI.getStudentsLocation(){ (studentsData, error) in
             
-            guard success == true else {
+            guard error == nil || error == "" else {
                 
                 self.showSimpleAlert(caption: "Map", text: error!, okHandler: nil)
                 

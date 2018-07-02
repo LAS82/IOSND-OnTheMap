@@ -11,7 +11,7 @@ import Foundation
 class UdacityAPI {
     
     
-    static func doLogin(email: String, password: String, completionHandler: @escaping (_ accountKey: String?, _ sessionId: String?, _ error: String?) -> Void) {
+    static func doLogin(email: String, password: String, completionHandler: @escaping (_ accountKey: String?, _ sessionId: String?, _ errorMessage: String?) -> Void) {
         
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         
@@ -53,11 +53,38 @@ class UdacityAPI {
         
     }
     
-    private static func setHeaderValuesForDoLogin() {
+    static func doLogout(completionHandler: @escaping (_ errorMessage: String?) -> Void) {
+        
+        
+        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+            
+            guard (error == nil) else {
+                completionHandler("Some problem occurs to do the logout. Try again.")
+                return
+            }
+            
+            completionHandler(nil)
+            
+        }
+        
+        task.resume()
         
     }
     
-    static func getStudentsLocation(completionHandler: @escaping (_ studentsData: [[String:AnyObject]]?, _ success: Bool, _ error: String?) -> Void) {
+    static func getStudentsLocation(completionHandler: @escaping (_ studentsData: [[String:AnyObject]]?, _ errorMessage: String?) -> Void) {
         
         let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")!)
         
@@ -71,7 +98,7 @@ class UdacityAPI {
             let result = API.executedWithSuccess(error: error, response: response, data: data, statusCodeMessage: "Some error occurs while getting students locations")
             
             guard result == "" else {
-                completionHandler(nil, false, result)
+                completionHandler(nil, result)
                 return
             }
             
@@ -79,12 +106,12 @@ class UdacityAPI {
             
             if let parsedResult = (try! JSONSerialization.jsonObject(with: data!, options: .allowFragments)) as? [String: AnyObject] {
                 
-                completionHandler(parsedResult["results"] as? [[String:AnyObject]], true, nil)
+                completionHandler(parsedResult["results"] as? [[String:AnyObject]], nil)
                 
                 return
             }
             
-            completionHandler(nil, false, nil)
+            completionHandler(nil, "No students data was returned")
             
         }
         

@@ -147,10 +147,15 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="3Jd-FF-tDn">
                                 <connections>
+                                    <action selector="addClick:" destination="JEL-9q-ped" id="Tfo-0O-N0b"/>
                                     <segue destination="tea-9C-eED" kind="presentation" id="Spf-V1-mlM"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="Tgq-hT-REV"/>
+                            <barButtonItem systemItem="refresh" id="Tgq-hT-REV">
+                                <connections>
+                                    <action selector="refreshClick:" destination="JEL-9q-ped" id="7kC-Mr-Csi"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>

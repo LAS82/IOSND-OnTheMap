@@ -18,6 +18,18 @@ class MapViewController : BaseViewController, MKMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setStudentsAnnotationsOnMap()
+    }
+    
+    @IBAction func refreshClick(_ sender: Any) {
+        setStudentsAnnotationsOnMap()
+    }
+    
+    @IBAction func addClick(_ sender: Any) {
+    }
+    
+    func setStudentsAnnotationsOnMap() {
+        
         UdacityAPI.getStudentsLocation(){ (studentsData, success, error) in
             
             guard success == true else {
@@ -28,25 +40,20 @@ class MapViewController : BaseViewController, MKMapViewDelegate {
             }
             
             performUIUpdatesOnMain {
-                self.setStudentsAnnotationsOnMap(studentsData: studentsData!)
+                self.map.removeAnnotations(self.map.annotations)
+                
+                for result in studentsData! {
+                    if Students.addStudentToList(student: result) {
+                        let lastAddedStudent = Students.sharedStudents[Students.sharedStudents.count - 1]
+                        
+                        self.annotations.append(self.configAnnotation(student: lastAddedStudent))
+                    }
+                }
+                
+                self.map.addAnnotations(self.annotations)
             }
             
         }
-    }
-    
-    func setStudentsAnnotationsOnMap(studentsData: [[String:AnyObject]]) {
-        
-        self.map.removeAnnotations(self.map.annotations)
-        
-        for result in studentsData {
-            if Students.addStudentToList(student: result) {
-                let lastAddedStudent = Students.sharedStudents[Students.sharedStudents.count - 1]
-                
-                annotations.append(configAnnotation(student: lastAddedStudent))
-            }
-        }
-        
-        self.map.addAnnotations(annotations)
     }
     
     func configAnnotation(student: Student) -> MKPointAnnotation {

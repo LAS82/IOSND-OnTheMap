@@ -8,19 +8,39 @@
  
 import Foundation
 
+//Represents a student
 struct Student {
     
+    //Date that the register was created
     let createdAt: String!
+    
+    //Students first name
     let firstName: String!
+    
+    //Students last name
     let lastName: String!
+    
+    //Students pin latitude position
     let latitude: Double!
+    
+    //Students pin longitude position
     let longitude: Double!
+    
     let mapString: String!
+    
+    //The student's website
     let mediaURL: String!
+    
+    //The register id
     let objectId: String!
+    
+    //Other register id
     let uniqueKey: String!
+    
+    //Date that the register was updated (the last update)
     let updatedAt: String!
     
+    //Constructor
     init(_ createdAt_: String!,
          _ firstName_: String!,
          _ lastName_: String!,
@@ -45,9 +65,14 @@ struct Student {
     }
 }
 
+//Represents a list of students pins
 class Students {
+    
+    //Students array
     static var sharedStudents = [Student]()
     
+    //Add a student to the list of students if latitude and longitude was set
+    //Returns an bool indicating the student's addition to the list
     static func addStudentToList(student: [String: AnyObject]) -> Bool {
         
         let createdAt = student["createdAt"] as? String

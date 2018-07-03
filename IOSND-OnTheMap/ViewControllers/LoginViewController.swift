@@ -15,18 +15,6 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func alertOkClicked(_ alert: UIAlertAction?) {
         performUIUpdatesOnMain {
             self.enableViewFields(true)

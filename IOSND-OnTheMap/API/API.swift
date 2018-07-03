@@ -8,8 +8,10 @@
  
 import Foundation
 
+//Contains general API's methods
 class API {
     
+    //Verifies if the API was succesfully processed
     static func executedWithSuccess(error: Error?, response: URLResponse?, data: Data?, statusCodeMessage: String) -> String {
         
         

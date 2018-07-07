@@ -169,10 +169,10 @@
             </objects>
             <point key="canvasLocation" x="3032.8000000000002" y="-349.47526236881561"/>
         </scene>
-        <!--View Controller-->
+        <!--Information Posting-->
         <scene sceneID="Y3l-wH-GSm">
             <objects>
-                <viewController id="tea-9C-eED" sceneMemberID="viewController">
+                <viewController id="tea-9C-eED" userLabel="Information Posting" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pKs-Ap-qlI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,6 +183,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laC-aD-B2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4006" y="-37"/>
+        </scene>
+        <!--Confirm Map-->
+        <scene sceneID="0Lj-OY-rcS">
+            <objects>
+                <viewController id="VJ9-Ey-Jy4" userLabel="Confirm Map" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZsZ-Xd-Cz2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="QEx-T5-xoK"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Zq-z8-9Fc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4860" y="-37"/>
         </scene>
         <!--Locations List-->
         <scene sceneID="RW8-Wu-amS">
@@ -245,14 +260,22 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="On the Map" id="Hg2-Ud-6MP">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="wgO-dC-0Gy"/>
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="wgO-dC-0Gy">
+                            <connections>
+                                <action selector="logoutClick:" destination="8wU-Ff-mhF" id="oHE-2H-HMQ"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="ofW-fi-dgK">
                                 <connections>
                                     <segue destination="tea-9C-eED" kind="presentation" id="M1Q-67-kNl"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="Feu-4S-Yt7"/>
+                            <barButtonItem systemItem="refresh" id="Feu-4S-Yt7">
+                                <connections>
+                                    <action selector="refreshClick:" destination="8wU-Ff-mhF" id="Rqp-qK-dN4"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>

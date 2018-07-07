@@ -28,7 +28,6 @@ class PinsListViewController : UITableViewController {
             }
             
             performUIUpdatesOnMain {
-                
                 Students.sharedStudents.removeAll()
                 
                 for result in studentsData! {
@@ -39,6 +38,15 @@ class PinsListViewController : UITableViewController {
             }
             
         }
+    }
+    
+    @IBAction func refreshClick(_ sender: Any) {
+        getStudentsData()
+    }
+    
+    
+    @IBAction func logoutClick(_ sender: Any) {
+        doLogout()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

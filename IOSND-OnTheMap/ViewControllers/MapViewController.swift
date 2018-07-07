@@ -26,7 +26,7 @@ class MapViewController : BasicViewController, MKMapViewDelegate {
     }
     
     @IBAction func logoutClick(_ sender: Any) {
-        super.doLogout()
+        doLogout()
     }
     
     func setStudentsAnnotationsOnMap() {

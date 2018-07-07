@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4330D7E320F131D30008876B /* PinsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330D7E220F131D30008876B /* PinsListViewController.swift */; };
 		4330D7E720F146140008876B /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330D7E620F146140008876B /* UIViewControllerExtension.swift */; };
+		43ADFFFC20F15F6400AE1A75 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ADFFFB20F15F6400AE1A75 /* InformationPostingViewController.swift */; };
 		43C0404220E011990082BAC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C0404120E011990082BAC2 /* AppDelegate.swift */; };
 		43C0404420E011990082BAC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C0404320E011990082BAC2 /* LoginViewController.swift */; };
 		43C0404720E011990082BAC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C0404520E011990082BAC2 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		4330D7E220F131D30008876B /* PinsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsListViewController.swift; sourceTree = "<group>"; };
 		4330D7E620F146140008876B /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		43ADFFFB20F15F6400AE1A75 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
 		43C0403E20E011990082BAC2 /* IOSND-OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOSND-OnTheMap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C0404120E011990082BAC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43C0404320E011990082BAC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				43F606A220E82382002C1CCE /* MapViewController.swift */,
 				4330D7E220F131D30008876B /* PinsListViewController.swift */,
 				4330D7E620F146140008876B /* UIViewControllerExtension.swift */,
+				43ADFFFB20F15F6400AE1A75 /* InformationPostingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				43C0404220E011990082BAC2 /* AppDelegate.swift in Sources */,
 				4330D7E320F131D30008876B /* PinsListViewController.swift in Sources */,
 				43CC0D2420E07B5900D6A3D8 /* User.swift in Sources */,
+				43ADFFFC20F15F6400AE1A75 /* InformationPostingViewController.swift in Sources */,
 				43CC0D2120E07ABA00D6A3D8 /* UdacityAPI.swift in Sources */,
 				43F606A520E8521D002C1CCE /* Students.swift in Sources */,
 				43CC0D2620E07DE200D6A3D8 /* API.swift in Sources */,

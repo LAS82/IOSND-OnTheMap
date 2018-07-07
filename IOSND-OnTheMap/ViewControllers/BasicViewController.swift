@@ -8,7 +8,7 @@
 
 import UIKit
  
-class BaseViewController : UIViewController, UITextFieldDelegate {
+class BasicViewController : UIViewController, UITextFieldDelegate {
     
     func showSimpleAlert(caption: String, text: String, okHandler: ((UIAlertAction) -> Void)?) {
     

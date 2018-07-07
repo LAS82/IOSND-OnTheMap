@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
  
-class MapViewController : BaseViewController, MKMapViewDelegate {
+class MapViewController : BasicViewController, MKMapViewDelegate {
     
     @IBOutlet weak var map: MKMapView!
     
@@ -42,6 +42,7 @@ class MapViewController : BaseViewController, MKMapViewDelegate {
             
             performUIUpdatesOnMain {
                 self.map.removeAnnotations(self.map.annotations)
+                Students.sharedStudents.removeAll()
                 
                 for result in studentsData! {
                     if Students.addStudentToList(student: result) {

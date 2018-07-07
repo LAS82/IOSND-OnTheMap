@@ -7,6 +7,7 @@
 //
  
 import Foundation
+import MapKit
 
 //Represents the logged user
 class User {
@@ -20,10 +21,16 @@ class User {
     //The Session Id
     var sessionId: String
     
+    var placemark: CLPlacemark?
+    
+    var url: String
+    
     //Class constructor
     private init() {
         accountkey = ""
         sessionId = ""
+        placemark = nil
+        url = ""
     }
     
     //The singleton

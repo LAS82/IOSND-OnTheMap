@@ -58,4 +58,10 @@ class PinsListViewController : UITableViewController {
         return studentCell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        UIApplication.shared.openURL(URL(string: Students.sharedStudents[indexPath.row].mediaURL)!)
+        
+    }
+    
 }

@@ -32,7 +32,7 @@ class UdacityAPI {
             }
             
             let range = Range(5..<data!.count)
-            let newData = data!.subdata(in: Range(range)) /* subset response data! */
+            let newData = data!.subdata(in: Range(range))
             
             if let parsedResult = (try! JSONSerialization.jsonObject(with: newData, options: JSONSerialization.ReadingOptions.allowFragments)) as? NSDictionary {
                 

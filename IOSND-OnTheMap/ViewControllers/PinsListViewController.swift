@@ -58,14 +58,4 @@ class PinsListViewController : UITableViewController {
         return studentCell
     }
     
-    func showSimpleAlert(caption: String, text: String, okHandler: ((UIAlertAction) -> Void)?) {
-        
-        let alert = UIAlertController(title: caption, message: text, preferredStyle: UIAlertControllerStyle.alert)
-        
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: okHandler))
-        
-        self.present(alert, animated: true, completion: nil)
-        
-    }
-    
 }

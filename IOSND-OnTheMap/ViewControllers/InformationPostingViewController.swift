@@ -14,14 +14,50 @@ class InformationPostingViewController : BasicViewController {
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var url: UITextField!
     @IBOutlet weak var findLocationButton: UIButton!
+    @IBOutlet weak var finishButton: UIButton!
+    @IBOutlet weak var map: MKMapView!
+    
+    override func viewDidLoad() {
+        map.isHidden = true
+        finishButton.isHidden = true
+    }
     
     @IBAction func cancelClick(_ sender: Any) {
         
-        dismiss(animated: true, completion: nil)
+        if map.isHidden {
+            dismiss(animated: true, completion: nil)
+        }
+        else {
+            
+            self.location.isHidden = false
+            self.url.isHidden = false
+            self.findLocationButton.isHidden = false
+            
+            self.finishButton.isHidden = true
+            self.map.isHidden = true
+        }
         
     }
     
-    @IBAction func findLocationClicked(_ sender: Any) {
+    @IBAction func finishClick(_ sender: Any) {
+    
+        UdacityAPI.setLoggedStudentLocation() { (errorMessage: String?) in
+         
+            guard errorMessage == nil else {
+
+                 self.showSimpleAlert(caption: "Ad Location", text: errorMessage!, okHandler: nil)
+                 return
+
+            }
+         
+            self.dismiss(animated: true, completion: nil)
+            
+         }
+        
+    }
+    
+    
+    @IBAction func findLocationClick(_ sender: Any) {
         enableViewFields(false)
         
         if (!checkInputIsValid()) {
@@ -48,10 +84,15 @@ class InformationPostingViewController : BasicViewController {
             User.sharedUser.locationMapText = self.location!.text!
             User.sharedUser.url = self.url.text!
             
-            let resultView = self.storyboard?.instantiateViewController(withIdentifier: "AddLocationConfirmation") as? ConfirmationController
             
-            self.present(resultView!, animated: true, completion: nil)
+            self.location.isHidden = true
+            self.url.isHidden = true
+            self.findLocationButton.isHidden = true
             
+            self.finishButton.isHidden = false
+            self.map.isHidden = false
+            
+            self.map.showAnnotations([MKPlacemark(placemark: User.sharedUser.placemark!)], animated: true)
         })
         
         enableViewFields(true)

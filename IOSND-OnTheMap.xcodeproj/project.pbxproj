@@ -10,7 +10,6 @@
 		4330D7E320F131D30008876B /* PinsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330D7E220F131D30008876B /* PinsListViewController.swift */; };
 		4330D7E720F146140008876B /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4330D7E620F146140008876B /* UIViewControllerExtension.swift */; };
 		43ADFFFC20F15F6400AE1A75 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ADFFFB20F15F6400AE1A75 /* InformationPostingViewController.swift */; };
-		43ADFFFE20F1814700AE1A75 /* ConfirmationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ADFFFD20F1814700AE1A75 /* ConfirmationController.swift */; };
 		43C0404220E011990082BAC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C0404120E011990082BAC2 /* AppDelegate.swift */; };
 		43C0404420E011990082BAC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C0404320E011990082BAC2 /* LoginViewController.swift */; };
 		43C0404720E011990082BAC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C0404520E011990082BAC2 /* Main.storyboard */; };
@@ -29,7 +28,6 @@
 		4330D7E220F131D30008876B /* PinsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsListViewController.swift; sourceTree = "<group>"; };
 		4330D7E620F146140008876B /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		43ADFFFB20F15F6400AE1A75 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
-		43ADFFFD20F1814700AE1A75 /* ConfirmationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationController.swift; sourceTree = "<group>"; };
 		43C0403E20E011990082BAC2 /* IOSND-OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOSND-OnTheMap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43C0404120E011990082BAC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43C0404320E011990082BAC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 				4330D7E220F131D30008876B /* PinsListViewController.swift */,
 				4330D7E620F146140008876B /* UIViewControllerExtension.swift */,
 				43ADFFFB20F15F6400AE1A75 /* InformationPostingViewController.swift */,
-				43ADFFFD20F1814700AE1A75 /* ConfirmationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -202,7 +199,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				43C0405820E0559D0082BAC2 /* GCDBlackBox.swift in Sources */,
-				43ADFFFE20F1814700AE1A75 /* ConfirmationController.swift in Sources */,
 				43C0405620E051430082BAC2 /* BasicViewController.swift in Sources */,
 				43C0404420E011990082BAC2 /* LoginViewController.swift in Sources */,
 				43C0404220E011990082BAC2 /* AppDelegate.swift in Sources */,

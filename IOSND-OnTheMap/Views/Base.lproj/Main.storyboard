@@ -183,7 +183,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VL5-1I-Ryt">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="6hw-IM-o0M"/>
+                                            <constraint firstAttribute="width" constant="250" id="6hw-IM-o0M"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -199,7 +199,7 @@
                                         <rect key="frame" x="69.5" y="76" width="111" height="30"/>
                                         <state key="normal" title="FIND LOCATION"/>
                                         <connections>
-                                            <action selector="findLocationClicked:" destination="tea-9C-eED" eventType="touchUpInside" id="cMp-UQ-To3"/>
+                                            <action selector="findLocationClick:" destination="tea-9C-eED" eventType="touchUpInside" id="HcO-oL-2GU"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -219,20 +219,46 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5ta-Hr-85c">
+                                <rect key="frame" x="0.0" y="62" width="375" height="605"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfE-ig-GI6">
+                                <rect key="frame" x="87" y="617" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.020249272799999999" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="1xQ-eD-zpN"/>
+                                    <constraint firstAttribute="width" constant="200" id="TdG-XU-oMe"/>
+                                </constraints>
+                                <state key="normal" title="FINISH">
+                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="finishClick:" destination="tea-9C-eED" eventType="touchUpInside" id="3kl-gz-a3o"/>
+                                    <action selector="finishClick:" destination="VJ9-Ey-Jy4" eventType="touchUpInside" id="JfS-Iy-72R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Phc-Da-N2b" firstAttribute="centerX" secondItem="NdR-Wg-hKx" secondAttribute="centerX" id="CUw-hA-0wW"/>
+                            <constraint firstItem="XfE-ig-GI6" firstAttribute="bottom" secondItem="5ta-Hr-85c" secondAttribute="bottom" constant="-20" id="MKj-b6-o1T"/>
                             <constraint firstItem="Phc-Da-N2b" firstAttribute="centerY" secondItem="NdR-Wg-hKx" secondAttribute="centerY" id="WRM-sN-aDj"/>
                             <constraint firstItem="syz-eA-yJv" firstAttribute="leading" secondItem="NdR-Wg-hKx" secondAttribute="leading" id="XYi-VQ-XHd"/>
+                            <constraint firstItem="5ta-Hr-85c" firstAttribute="top" secondItem="syz-eA-yJv" secondAttribute="top" constant="42" id="bPY-Pu-mCO"/>
                             <constraint firstItem="NdR-Wg-hKx" firstAttribute="trailing" secondItem="syz-eA-yJv" secondAttribute="trailing" id="ctT-ws-jLI"/>
+                            <constraint firstItem="5ta-Hr-85c" firstAttribute="leading" secondItem="NdR-Wg-hKx" secondAttribute="leading" id="dtj-Vz-Wql"/>
+                            <constraint firstItem="XfE-ig-GI6" firstAttribute="centerX" secondItem="NdR-Wg-hKx" secondAttribute="centerX" id="fkI-UV-0Pi"/>
                             <constraint firstItem="syz-eA-yJv" firstAttribute="top" secondItem="NdR-Wg-hKx" secondAttribute="top" id="gDL-n9-TI7"/>
+                            <constraint firstItem="NdR-Wg-hKx" firstAttribute="trailing" secondItem="5ta-Hr-85c" secondAttribute="trailing" id="h7A-1O-LsW"/>
+                            <constraint firstItem="NdR-Wg-hKx" firstAttribute="bottom" secondItem="5ta-Hr-85c" secondAttribute="bottom" id="lDz-13-HUw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NdR-Wg-hKx"/>
                     </view>
                     <connections>
                         <outlet property="findLocationButton" destination="KAq-eA-XbF" id="UI5-08-FIK"/>
+                        <outlet property="finishButton" destination="XfE-ig-GI6" id="ekE-zo-ZTk"/>
                         <outlet property="location" destination="VL5-1I-Ryt" id="vId-0Q-e8n"/>
+                        <outlet property="map" destination="5ta-Hr-85c" id="lca-Xy-WbK"/>
                         <outlet property="url" destination="ee7-JJ-NRn" id="auj-Y2-qh0"/>
                     </connections>
                 </viewController>

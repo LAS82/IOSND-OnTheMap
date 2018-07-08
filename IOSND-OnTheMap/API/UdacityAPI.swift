@@ -115,4 +115,36 @@ class UdacityAPI {
         
     }
     
+    static func studentWithUserKey(completionHandler: @escaping  (_ error: String?) -> Void) {
+        
+        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/users/\(User.sharedUser.accountkey)")!)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+            
+            let result = API.executedWithSuccess(error: error, response: response, data: data, statusCodeMessage: "Some problem occurs while attempting to get user data.")
+            
+            guard result == "" else {
+                completionHandler(result)
+                return
+            }
+            
+            let range = Range(5..<data!.count)
+            let newData = data!.subdata(in: Range(range)) /* subset response data! */
+            
+            if let parsedResult = (try! JSONSerialization.jsonObject(with: newData, options: JSONSerialization.ReadingOptions.allowFragments)) as? NSDictionary {
+                
+                let userData = parsedResult["user"] as! NSDictionary
+                User.sharedUser.firstName = userData["first_name"] as! String
+                User.sharedUser.lastName = userData["last_name"] as! String
+                
+            }
+            
+            completionHandler(nil)
+            
+        }
+        
+        task.resume()
+        
+    }
+    
 }

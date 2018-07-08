@@ -25,12 +25,18 @@ class User {
     
     var url: String
     
+    var firstName: String
+    var lastName: String
+    
     //Class constructor
     private init() {
         accountkey = ""
         sessionId = ""
         placemark = nil
         url = ""
+        
+        firstName = ""
+        lastName = "
     }
     
     //The singleton

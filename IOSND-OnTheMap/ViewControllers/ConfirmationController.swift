@@ -11,4 +11,10 @@ import MapKit
 
 class ConfirmationController : BasicViewController {
     
+    
+    @IBAction func addLocationClick(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

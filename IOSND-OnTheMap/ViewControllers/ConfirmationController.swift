@@ -11,6 +11,13 @@ import MapKit
 
 class ConfirmationController : BasicViewController {
     
+    @IBOutlet weak var map: MKMapView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        map.showAnnotations([MKPlacemark(placemark: User.sharedUser.placemark!)], animated: true)
+        
+    }
     
     @IBAction func addLocationClick(_ sender: Any) {
         

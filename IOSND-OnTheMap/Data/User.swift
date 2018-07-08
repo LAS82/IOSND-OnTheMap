@@ -36,7 +36,7 @@ class User {
         url = ""
         
         firstName = ""
-        lastName = "
+        lastName = ""
     }
     
     //The singleton

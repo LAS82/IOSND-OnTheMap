@@ -42,10 +42,21 @@ class LoginViewController: BasicViewController {
             sharedUser.accountkey = accountKey!
             sharedUser.sessionId = sessionId!
             
-            performUIUpdatesOnMain {
-                self.enableViewFields(true)
+            UdacityAPI.studentWithAccountKey() {(errorMessage: String?) in
                 
-                self.performSegue(withIdentifier: "NavigatesToAppFeatures", sender: self)
+                guard error == nil else {
+                    self.showSimpleAlert(caption: "Login Failed", text: errorMessage!, okHandler: self.alertOkClicked)
+                    
+                    return
+                }
+                
+                performUIUpdatesOnMain {
+                    
+                    self.enableViewFields(true)
+                    self.performSegue(withIdentifier: "NavigatesToAppFeatures", sender: self)
+                    
+                }
+                
             }
             
         }

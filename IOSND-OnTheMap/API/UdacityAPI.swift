@@ -115,7 +115,7 @@ class UdacityAPI {
         
     }
     
-    static func studentWithUserKey(completionHandler: @escaping  (_ error: String?) -> Void) {
+    static func studentWithAccountKey(completionHandler: @escaping  (_ error: String?) -> Void) {
         
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/users/\(User.sharedUser.accountkey)")!)
         

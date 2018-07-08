@@ -28,11 +28,14 @@ class User {
     var firstName: String
     var lastName: String
     
+    var locationMapText: String
+    
     //Class constructor
     private init() {
         accountkey = ""
         sessionId = ""
         placemark = nil
+        locationMapText = ""
         url = ""
         
         firstName = ""

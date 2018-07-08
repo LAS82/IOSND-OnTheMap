@@ -45,6 +45,7 @@ class InformationPostingViewController : BasicViewController {
             }
             
             User.sharedUser.placemark = results![0]
+            User.sharedUser.locationMapText = self.location!.text!
             User.sharedUser.url = self.url.text!
             
             let resultView = self.storyboard?.instantiateViewController(withIdentifier: "AddLocationConfirmation") as? ConfirmationController

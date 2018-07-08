@@ -115,7 +115,7 @@ class UdacityAPI {
         
     }
     
-    static func studentWithAccountKey(completionHandler: @escaping  (_ error: String?) -> Void) {
+    static func getLoggedUserData(completionHandler: @escaping  (_ error: String?) -> Void) {
         
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/users/\(User.sharedUser.accountkey)")!)
         
@@ -137,6 +137,39 @@ class UdacityAPI {
                 User.sharedUser.firstName = userData["first_name"] as! String
                 User.sharedUser.lastName = userData["last_name"] as! String
                 
+            }
+            
+            completionHandler(nil)
+            
+        }
+        
+        task.resume()
+        
+    }
+    
+    static func setLoggedStudentLocation(completionHandler: @escaping (_ error: String?) -> Void) {
+        
+        let latitude: Double = (User.sharedUser.placemark?.location?.coordinate.latitude)!
+        let longitude: Double = (User.sharedUser.placemark?.location?.coordinate.longitude)!
+        
+        print(latitude)
+        print(longitude)
+        
+        /* Configure the request */
+        let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
+        request.httpMethod = "POST"
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = "{\"uniqueKey\": \"\(User.sharedUser.accountkey)\", \"firstName\": \"\(User.sharedUser.firstName)\", \"lastName\": \"\(User.sharedUser.lastName)\",\"mapString\": \"\(User.sharedUser.locationMapText)\", \"mediaURL\": \"\(User.sharedUser.url)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}".data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+            
+            let result = API.executedWithSuccess(error: error, response: response, data: data, statusCodeMessage: "Some problem occurs while trying to post your location.")
+            
+            guard result == "" else {
+                completionHandler(result)
+                return
             }
             
             completionHandler(nil)

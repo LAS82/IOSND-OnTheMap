@@ -24,4 +24,16 @@ class ConfirmationController : BasicViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func finishClick(_ sender: Any) {
+        UdacityAPI.setLoggedStudentLocation() { (errorMessage: String?) in
+            
+            guard errorMessage == nil else {
+                
+                self.showSimpleAlert(caption: "Ad Location", text: errorMessage!, okHandler: nil)
+                return
+                
+            }
+            
+        }
+    }
 }

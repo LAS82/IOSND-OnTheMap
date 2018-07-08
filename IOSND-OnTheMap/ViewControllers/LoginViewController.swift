@@ -42,7 +42,7 @@ class LoginViewController: BasicViewController {
             sharedUser.accountkey = accountKey!
             sharedUser.sessionId = sessionId!
             
-            UdacityAPI.studentWithAccountKey() {(errorMessage: String?) in
+            UdacityAPI.getLoggedUserData() {(errorMessage: String?) in
                 
                 guard error == nil else {
                     self.showSimpleAlert(caption: "Login Failed", text: errorMessage!, okHandler: self.alertOkClicked)

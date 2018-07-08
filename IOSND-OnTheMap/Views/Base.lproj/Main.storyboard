@@ -272,6 +272,9 @@
                                 <state key="normal" title="FINISH">
                                     <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="finishClick:" destination="VJ9-Ey-Jy4" eventType="touchUpInside" id="vDS-9T-70S"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

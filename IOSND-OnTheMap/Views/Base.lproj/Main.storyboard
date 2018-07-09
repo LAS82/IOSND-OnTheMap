@@ -227,7 +227,6 @@
                                 <color key="backgroundColor" red="0.020249272799999999" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="1xQ-eD-zpN"/>
-                                    <constraint firstAttribute="width" constant="200" id="TdG-XU-oMe"/>
                                 </constraints>
                                 <state key="normal" title="FINISH">
                                     <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
@@ -237,6 +236,9 @@
                                     <action selector="finishClick:" destination="VJ9-Ey-Jy4" eventType="touchUpInside" id="JfS-Iy-72R"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9kT-mB-psg">
+                                <rect key="frame" x="177.5" y="333.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -251,10 +253,13 @@
                             <constraint firstItem="syz-eA-yJv" firstAttribute="top" secondItem="NdR-Wg-hKx" secondAttribute="top" id="gDL-n9-TI7"/>
                             <constraint firstItem="NdR-Wg-hKx" firstAttribute="trailing" secondItem="5ta-Hr-85c" secondAttribute="trailing" id="h7A-1O-LsW"/>
                             <constraint firstItem="NdR-Wg-hKx" firstAttribute="bottom" secondItem="5ta-Hr-85c" secondAttribute="bottom" id="lDz-13-HUw"/>
+                            <constraint firstItem="9kT-mB-psg" firstAttribute="centerY" secondItem="NdR-Wg-hKx" secondAttribute="centerY" id="meA-bP-qWG"/>
+                            <constraint firstItem="9kT-mB-psg" firstAttribute="centerX" secondItem="NdR-Wg-hKx" secondAttribute="centerX" id="qse-R4-eLV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NdR-Wg-hKx"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorGeo" destination="9kT-mB-psg" id="8BQ-xy-Sad"/>
                         <outlet property="findLocationButton" destination="KAq-eA-XbF" id="UI5-08-FIK"/>
                         <outlet property="finishButton" destination="XfE-ig-GI6" id="ekE-zo-ZTk"/>
                         <outlet property="location" destination="VL5-1I-Ryt" id="vId-0Q-e8n"/>

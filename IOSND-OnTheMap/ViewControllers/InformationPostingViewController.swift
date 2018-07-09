@@ -17,9 +17,11 @@ class InformationPostingViewController : BasicViewController {
     @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     
+    @IBOutlet weak var activityIndicatorGeo: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
-        map.isHidden = true
-        finishButton.isHidden = true
+        showMap(false)
+        loading(false)
     }
     
     @IBAction func cancelClick(_ sender: Any) {
@@ -29,12 +31,7 @@ class InformationPostingViewController : BasicViewController {
         }
         else {
             
-            self.location.isHidden = false
-            self.url.isHidden = false
-            self.findLocationButton.isHidden = false
-            
-            self.finishButton.isHidden = true
-            self.map.isHidden = true
+            showMap(false)
         }
         
     }
@@ -56,11 +53,27 @@ class InformationPostingViewController : BasicViewController {
         
     }
     
+    func loading(_ loading: Bool) {
+        
+        if loading {
+            activityIndicatorGeo.startAnimating()
+            activityIndicatorGeo.isHidden = false
+        }
+        else {
+            activityIndicatorGeo.stopAnimating()
+            activityIndicatorGeo.isHidden = true
+        }
+        
+    }
+    
     
     @IBAction func findLocationClick(_ sender: Any) {
+        
+        loading(true)
         enableViewFields(false)
         
         if (!checkInputIsValid()) {
+            
             return
         }
         
@@ -84,18 +97,13 @@ class InformationPostingViewController : BasicViewController {
             User.sharedUser.locationMapText = self.location!.text!
             User.sharedUser.url = self.url.text!
             
-            
-            self.location.isHidden = true
-            self.url.isHidden = true
-            self.findLocationButton.isHidden = true
-            
-            self.finishButton.isHidden = false
-            self.map.isHidden = false
+            self.showMap(true)
             
             self.map.showAnnotations([MKPlacemark(placemark: User.sharedUser.placemark!)], animated: true)
+            
+            self.loading(false)
+            self.enableViewFields(true)
         })
-        
-        enableViewFields(true)
     }
     
     func checkInputIsValid() -> Bool {
@@ -116,6 +124,7 @@ class InformationPostingViewController : BasicViewController {
     
     func alertOkClicked(_ alert: UIAlertAction?) {
         performUIUpdatesOnMain {
+            self.loading(false)
             self.enableViewFields(true)
         }
     }
@@ -124,6 +133,17 @@ class InformationPostingViewController : BasicViewController {
         url.isEnabled = enabled
         location.isEnabled = enabled
         findLocationButton.isEnabled = enabled
+    }
+    
+    func showMap(_ show: Bool) {
+        
+        self.location.isHidden = show
+        self.url.isHidden = show
+        self.findLocationButton.isHidden = show
+        
+        self.finishButton.isHidden = !show
+        self.map.isHidden = !show
+        
     }
     
 }

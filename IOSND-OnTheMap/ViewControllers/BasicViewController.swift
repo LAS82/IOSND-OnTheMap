@@ -7,12 +7,12 @@
 //
 
 import UIKit
- 
+
+//Base view controllers for other controllers
 class BasicViewController : UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
+        textField.resignFirstResponder()        
         return true
     }
     

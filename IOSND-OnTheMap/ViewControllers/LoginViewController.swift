@@ -10,17 +10,16 @@ import UIKit
  
 class LoginViewController: BasicViewController {
     
+    //MARK: - Properties
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-    
-    func alertOkClicked(_ alert: UIAlertAction?) {
-        performUIUpdatesOnMain {
-            self.enableViewFields(true)
-        }
-    }
+ 
 
+    //MARK: - Actions
+    
+    //Do the login at udacity.
     @IBAction func loginClick(_ sender: Any) {
         
         enableViewFields(false)
@@ -62,6 +61,7 @@ class LoginViewController: BasicViewController {
         }
     }
     
+    //Open the Udacity's sign up page
     @IBAction func signUpClick(_ sender: Any) {
         
         UIApplication.shared.open(URL(string : "https://auth.udacity.com/sign-up")!, options: [:], completionHandler:
@@ -75,6 +75,9 @@ class LoginViewController: BasicViewController {
         
     }
     
+    //MARK: - Other functions
+    
+    //Verify user inputs
     func checkInputIsValid() -> Bool {
         
         guard email.text != "" else {
@@ -91,6 +94,14 @@ class LoginViewController: BasicViewController {
         
     }
     
+    //Executed after alert's OK button is clicked
+    func alertOkClicked(_ alert: UIAlertAction?) {
+        performUIUpdatesOnMain {
+            self.enableViewFields(true)
+        }
+    }
+    
+    //Enables or disables the fields
     func enableViewFields(_ enabled: Bool) {
         email.isEnabled = enabled
         password.isEnabled = enabled

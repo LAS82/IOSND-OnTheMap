@@ -11,19 +11,25 @@ import MapKit
 
 class InformationPostingViewController : BasicViewController {
     
+    //MARK: - Properties
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var url: UITextField!
     @IBOutlet weak var findLocationButton: UIButton!
     @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var map: MKMapView!
-    
     @IBOutlet weak var activityIndicatorGeo: UIActivityIndicatorView!
     
+    //MARK: - View Functions
+    
+    //Load the view
     override func viewDidLoad() {
         showMap(false)
         loading(false)
     }
     
+    //MARK: - Action functions
+    
+    //Returns to the first form of the view or to the Tab view
     @IBAction func cancelClick(_ sender: Any) {
         
         if map.isHidden {
@@ -36,6 +42,7 @@ class InformationPostingViewController : BasicViewController {
         
     }
     
+    //Post the data to the API
     @IBAction func finishClick(_ sender: Any) {
     
         UdacityAPI.setLoggedStudentLocation() { (errorMessage: String?) in
@@ -53,20 +60,7 @@ class InformationPostingViewController : BasicViewController {
         
     }
     
-    func loading(_ loading: Bool) {
-        
-        if loading {
-            activityIndicatorGeo.startAnimating()
-            activityIndicatorGeo.isHidden = false
-        }
-        else {
-            activityIndicatorGeo.stopAnimating()
-            activityIndicatorGeo.isHidden = true
-        }
-        
-    }
-    
-    
+    //Uses Geocoder to find the typed location
     @IBAction func findLocationClick(_ sender: Any) {
         
         loading(true)
@@ -106,6 +100,9 @@ class InformationPostingViewController : BasicViewController {
         })
     }
     
+    //MARK: - Other Functions
+    
+    //Checks if location and url fields has information
     func checkInputIsValid() -> Bool {
         
         guard location.text != "" else {
@@ -122,6 +119,21 @@ class InformationPostingViewController : BasicViewController {
         
     }
     
+    //Shows or hides the load icon on screen
+    func loading(_ loading: Bool) {
+        
+        if loading {
+            activityIndicatorGeo.startAnimating()
+            activityIndicatorGeo.isHidden = false
+        }
+        else {
+            activityIndicatorGeo.stopAnimating()
+            activityIndicatorGeo.isHidden = true
+        }
+        
+    }
+    
+    //Executed after alert's OK button is clicked
     func alertOkClicked(_ alert: UIAlertAction?) {
         performUIUpdatesOnMain {
             self.loading(false)
@@ -129,12 +141,14 @@ class InformationPostingViewController : BasicViewController {
         }
     }
     
+    //Enables or disables the fields
     func enableViewFields(_ enabled: Bool) {
         url.isEnabled = enabled
         location.isEnabled = enabled
         findLocationButton.isEnabled = enabled
     }
     
+    //Shows the map screen or the location find screen
     func showMap(_ show: Bool) {
         
         self.location.isHidden = show

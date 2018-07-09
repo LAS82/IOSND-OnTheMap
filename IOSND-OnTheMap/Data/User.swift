@@ -21,13 +21,19 @@ class User {
     //The Session Id
     var sessionId: String
     
+    //Placemark selected by the user
     var placemark: CLPlacemark?
     
+    //User's typed URL
     var url: String
     
+    //User first name
     var firstName: String
+    
+    //User last name
     var lastName: String
     
+    //Location typed by the user
     var locationMapText: String
     
     //Class constructor

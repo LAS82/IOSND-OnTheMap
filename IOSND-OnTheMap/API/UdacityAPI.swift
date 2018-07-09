@@ -10,6 +10,8 @@ import Foundation
 
 class UdacityAPI {
     
+    //MARK: - Login/Logout methods
+    
     //Do the login with udacity's API
     static func doLogin(email: String, password: String, completionHandler: @escaping (_ accountKey: String?, _ sessionId: String?, _ errorMessage: String?) -> Void) {
         
@@ -83,6 +85,41 @@ class UdacityAPI {
         
     }
     
+    //Get info about the logged user
+    static func getLoggedUserData(completionHandler: @escaping  (_ error: String?) -> Void) {
+        
+        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/users/\(User.sharedUser.accountkey)")!)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+            
+            let result = API.executedWithSuccess(error: error, response: response, data: data, statusCodeMessage: "Some problem occurs while attempting to get user data.")
+            
+            guard result == "" else {
+                completionHandler(result)
+                return
+            }
+            
+            let range = Range(5..<data!.count)
+            let newData = data!.subdata(in: Range(range))
+            
+            if let parsedResult = (try! JSONSerialization.jsonObject(with: newData, options: JSONSerialization.ReadingOptions.allowFragments)) as? NSDictionary {
+                
+                let userData = parsedResult["user"] as! NSDictionary
+                User.sharedUser.firstName = userData["first_name"] as! String
+                User.sharedUser.lastName = userData["last_name"] as! String
+                
+            }
+            
+            completionHandler(nil)
+            
+        }
+        
+        task.resume()
+        
+    }
+    
+    //MARK: - Location methods methods
+    
     //Gets a list with the 100 last updated students
     static func getStudentsLocation(completionHandler: @escaping (_ studentsData: [[String:AnyObject]]?, _ errorMessage: String?) -> Void) {
         
@@ -115,38 +152,7 @@ class UdacityAPI {
         
     }
     
-    static func getLoggedUserData(completionHandler: @escaping  (_ error: String?) -> Void) {
-        
-        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/users/\(User.sharedUser.accountkey)")!)
-        
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-            
-            let result = API.executedWithSuccess(error: error, response: response, data: data, statusCodeMessage: "Some problem occurs while attempting to get user data.")
-            
-            guard result == "" else {
-                completionHandler(result)
-                return
-            }
-            
-            let range = Range(5..<data!.count)
-            let newData = data!.subdata(in: Range(range)) /* subset response data! */
-            
-            if let parsedResult = (try! JSONSerialization.jsonObject(with: newData, options: JSONSerialization.ReadingOptions.allowFragments)) as? NSDictionary {
-                
-                let userData = parsedResult["user"] as! NSDictionary
-                User.sharedUser.firstName = userData["first_name"] as! String
-                User.sharedUser.lastName = userData["last_name"] as! String
-                
-            }
-            
-            completionHandler(nil)
-            
-        }
-        
-        task.resume()
-        
-    }
-    
+    //Set user's location and url
     static func setLoggedStudentLocation(completionHandler: @escaping (_ error: String?) -> Void) {
         
         let latitude: Double = (User.sharedUser.placemark?.location?.coordinate.latitude)!
@@ -155,7 +161,6 @@ class UdacityAPI {
         print(latitude)
         print(longitude)
         
-        /* Configure the request */
         let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
         request.httpMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")

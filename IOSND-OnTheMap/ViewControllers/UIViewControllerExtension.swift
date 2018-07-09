@@ -10,6 +10,7 @@ import UIKit
 
 extension UIViewController {
     
+    //Shows an alert to the user.
     func showSimpleAlert(caption: String, text: String, okHandler: ((UIAlertAction) -> Void)?) {
         
         let alert = UIAlertController(title: caption, message: text, preferredStyle: UIAlertControllerStyle.alert)
@@ -20,6 +21,7 @@ extension UIViewController {
         
     }
     
+    //Logout in Udacity's API
     func doLogout() {
         UdacityAPI.doLogout() {(errorMessage: String?) in
             

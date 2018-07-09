@@ -11,24 +11,34 @@ import MapKit
  
 class MapViewController : BasicViewController, MKMapViewDelegate {
     
+    //MARK: - Properties
     @IBOutlet weak var map: MKMapView!
-    
     var annotations = [MKPointAnnotation]()
     
+    //MARK: - View Functions
+    
+    //Load students data and pins
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setStudentsAnnotationsOnMap()
     }
     
+    //MARK: - Action functions
+    
+    //Reset students data
     @IBAction func refreshClick(_ sender: Any) {
         setStudentsAnnotationsOnMap()
     }
     
+    //Logout
     @IBAction func logoutClick(_ sender: Any) {
         doLogout()
     }
     
+    //MARK: - Other Functions
+    
+    //Get students data and set the pins on the map
     func setStudentsAnnotationsOnMap() {
         
         UdacityAPI.getStudentsLocation(){ (studentsData, error) in
@@ -58,6 +68,9 @@ class MapViewController : BasicViewController, MKMapViewDelegate {
         }
     }
     
+    //MARK: - MAP functions
+    
+    //Configure the pin's annotations
     func configAnnotation(student: Student) -> MKPointAnnotation {
         let annotation = MKPointAnnotation()
         
@@ -72,6 +85,7 @@ class MapViewController : BasicViewController, MKMapViewDelegate {
         return annotation
     }
     
+    //Configure a pin
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId = "pinIdent"
         
@@ -90,6 +104,7 @@ class MapViewController : BasicViewController, MKMapViewDelegate {
         return pinView
     }
     
+    //Configure a pin touch event
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared

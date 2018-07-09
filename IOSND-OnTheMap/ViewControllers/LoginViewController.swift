@@ -32,7 +32,7 @@ class LoginViewController: BasicViewController {
             
             guard error == nil else {
                     
-                self.showSimpleAlert(caption: "Login Failed", text: "Email or password is invalid.", okHandler: self.alertOkClicked)
+                self.showSimpleAlert(caption: "Login Failed", text: error!, okHandler: self.alertOkClicked)
                 
                 return
             }

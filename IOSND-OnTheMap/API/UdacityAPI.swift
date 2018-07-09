@@ -29,7 +29,7 @@ class UdacityAPI {
             let result = API.executedWithSuccess(error: error, response: response, data: data, statusCodeMessage: "Email or password is invalid")
             
             guard result == "" else {
-                completionHandler(nil, nil, "")
+                completionHandler(nil, nil, result)
                 return
             }
             

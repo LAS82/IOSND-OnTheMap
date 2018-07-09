@@ -28,8 +28,7 @@ extension UIViewController {
             if errorMessage == nil || errorMessage == "" {
                 
                 performUIUpdatesOnMain {
-                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: "Login")
-                    self.present(viewController, animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
                 
             } else {

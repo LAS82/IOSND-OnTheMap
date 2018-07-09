@@ -16,7 +16,7 @@ class API {
         
         
         guard (error == nil) else {
-            return "An error occurs"
+            return (error?.localizedDescription)!
         }
         
         
